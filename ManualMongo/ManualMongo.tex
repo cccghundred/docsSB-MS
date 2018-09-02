@@ -1,0 +1,573 @@
+\documentclass[a4paper,11pt]{paper}
+
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{cite}
+
+\renewcommand\familydefault{\sfdefault}
+\usepackage{tgheros}
+\usepackage[defaultmono]{droidmono}
+
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{courier}
+
+\usepackage{geometry}
+\geometry{total={210mm,297mm},
+left=25mm,right=25mm,%
+bindingoffset=0mm, top=20mm,bottom=20mm}
+
+
+\linespread{1.3}
+
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+\@author \hfill \@date
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+% code listing settings
+\usepackage{listings}
+
+\lstset{%
+  language = Octave,
+  backgroundcolor=\color{white},   
+  basicstyle=\footnotesize\ttfamily,       
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                   
+  commentstyle=\color{gray},    
+  deletekeywords={...},           
+  escapeinside={\%*}{*)},          
+  extendedchars=true,              
+  frame=single,                    
+  keepspaces=true,                 
+  keywordstyle=\color{green},       
+  morekeywords={*,...},            
+  numbers=left,                    
+  numbersep=5pt,                   
+  numberstyle=\footnotesize\color{gray}, 
+  rulecolor=\color{black},         
+  rulesepcolor=\color{blue},
+  showspaces=false,                
+  showstringspaces=false,          
+  showtabs=false,                  
+  stepnumber=1,                    
+  stringstyle=\color{orange},    
+  tabsize=2,                       
+  title=\lstname,
+  emphstyle=\bfseries\color{blue}%  style for emph={} 
+} 
+
+\begin{document}
+
+\title{Manual de MongoDB}
+
+\author{Gana+ Back-End}
+
+\date{26/08/2018}
+\pagenumbering{gobble}
+\maketitle
+\vspace*{\fill}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\textwidth]{imgs/Mongo.png}
+\end{figure}
+\vspace*{\fill}
+
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+
+\section{Instalación}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Ingresar a la página oficial de {MongoDB}\footnote{https://www.mongodb.com/ \cite{mongo}} y hacer clic en la opción
+  \emph{``Get MongoDB''}
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{imgs/instalacion/PaginaMongo.png}
+  \end{figure}
+\item
+  Seleccionar la opción \emph{``Community Server''} y hacer clic en
+  \emph{``DOWNLOAD (msi)''}
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{imgs/instalacion/DownloadServer.png}
+  \end{figure}
+\item
+  Esperar a que finalice la descarga.
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{imgs/instalacion/ProcesoDescarga.png}
+  \end{figure}
+
+\newpage
+\item
+  Ejecutar el archivo
+  \emph{``mongodb-win32-x86\_64-2008plus-ssl-4.0.1-signed.msi''}
+\item
+  Hacer clic en Next
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Paso1.png}
+  \end{figure}
+\item
+  Marcar el check \emph{``I accept the terms in the License Agreement''}
+  y hacer clic en Next:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Paso2.png}
+  \end{figure}
+
+\newpage
+\item
+  Seleccionar la opción \emph{Complete}:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Paso3.png}
+  \end{figure}
+\item
+  Desmarcar el check \emph{``Install MongoD as a Service''} y hacer clic
+  en Next:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Paso4.png}
+  \end{figure}
+
+\newpage
+\item
+  Marcar el check \emph{``Install MongoDB Compass''} y hacer clic en
+  Next:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Paso5.png}
+  \end{figure}
+\item
+  Hacer clic en Install:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Paso6.png}
+  \end{figure}
+
+\newpage
+\item
+  Esperar a que finalice la instalación:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Paso7.png}
+  \end{figure}
+\item
+  Si durante el proceso de instalación aparece el siguiente mensaje,
+  hacer clic en Ignore:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Paso8.png}
+  \end{figure}
+
+\newpage
+\item
+  Hacer clic en Finish
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Paso9.png}
+  \end{figure}
+\item
+  Abrir una consola de comandos como administrador e ingresar el siguiente comando y presionar la tecla enter:
+
+\begin{verbatim}
+   setx PATH /m "%path%;C:\Program Files\MongoDB\Server\4.0\bin"
+\end{verbatim}
+
+\item
+  Para verificar la correcta configuración de la variable de entorno;
+  abrir una nueva consola de comandos, escribir lo siguiente y presionar la
+  tecla Enter:
+\begin{verbatim}
+   mongo --version
+\end{verbatim}
+
+
+\item
+  Si está correctamente configurado, se mostrará lo siguiente:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/MongoVersion.png}
+  \end{figure}
+\end{enumerate}
+
+\newpage
+\section{Cliente NoSql Booster}
+
+NoSQLBooster para MongoDB (anteriormente MongoBooster) es una herramienta de GUI multiplataforma centrada en el shell para MongoDB v2.6-4.0, que proporciona un generador de consultas fluido, consulta SQL y soporte de sintaxis ES2017.\footnote{https://nosqlbooster.com/features \cite{booster}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Ingresar a la página de \href{https://nosqlbooster.com/home}{NoSQL
+  Booster}\footnote{https://nosqlbooster.com/home \cite{booster}} y hacer clic en \emph{Downloads}
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{imgs/instalacion/BoosterDownload.png}
+  \end{figure}
+\item
+  Hacer clic en el botón \emph{Download} de la sección correspondiente
+  al sistema operativo que este utilizando:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{imgs/instalacion/BoosterDownload2.png}
+  \end{figure}
+\item
+  Ir a la ruta de descarga y hacer doble clic en el instalador
+  \emph{``nosqlbooster4mongo-4.7.1.exe''}:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{imgs/instalacion/BoosterInstall.png}
+  \end{figure}
+
+\newpage
+\item
+  Esperar a que finalice la instalación:
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/BoosterInstall2.png}
+  \end{figure}
+\item
+  Se mostrará la ventana de la apliación \emph{NoSQL Booster} con el
+  formulario para administrar conexiones con MongoDB
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/BoosterFinal.png}
+  \end{figure}
+\item
+  Hacer clic en el botón \emph{``From URI''}
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imgs/instalacion/Conexion1.png}
+  \end{figure}
+
+\newpage
+\item
+  Colocar la siguiente cadena de conexión, correspondiente a MongoDB
+  QAs, y hacer clic en OK:
+\end{enumerate}
+
+\begin{verbatim}
+mongodb+srv://usrmongotddev:Mongo2018@personalizacionqas-xfhrx.mongodb.net/
+?authSource=admin&ssl=true
+\end{verbatim}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.6\textwidth]{imgs/instalacion/Conexion2.png}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  Finalmente, hacer clic en \emph{``Save \& Connect''}
+
+  \begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{imgs/instalacion/Conexion3.png}
+  \end{figure}
+\end{enumerate}
+
+\newpage
+\section{Consultas NoSQL}
+
+\hypertarget{insertar-documentos}{%
+\subsection{Insertar documentos}\label{insertar-documentos}}
+
+Insertar documentos en colecciones: \footnote{https://docs.mongodb.com/manual/reference/insert-methods/ \cite{doc}}
+
+\begin{verbatim}
+//Inserta documentos en la colección orders
+db.orders.insert([
+   { "item" : "almonds", "price" : 12, "quantity" : 2 },
+   { "item" : "pecans", "price" : 20, "quantity" : 1 },
+   //Inserta documento vacío
+   { }
+])
+
+//Inserta documentos en la colección inventory
+db.inventory.insert([
+   { "sku" : "almonds", description: "product 1", "instock" : 120 },
+   { "sku" : "bread", description: "product 2", "instock" : 80 },
+   { "sku" : "cashews", description: "product 3", "instock" : 60 },
+   { "sku" : "pecans", description: "product 4", "instock" : 70 },
+   { "sku": null, description: "Incomplete" },
+   {  }
+])
+\end{verbatim}
+
+\newpage
+\hypertarget{consultar-datos}{%
+\subsection{Consultar datos}\label{consultar-datos}}
+
+Consultar todos los documentos de una colección\footnote{https://docs.mongodb.com/manual/reference/operator/query/ \cite{doc}}
+
+\begin{verbatim}
+db.inventory.find({})
+db.orders.find({})
+\end{verbatim}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.7\textwidth]{imgs/ConsultarInventory.png}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.7\textwidth]{imgs/ConsultarOrders.png}
+\end{figure}
+
+Consultar por campos\footnote{https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/ \cite{doc}}
+
+\begin{verbatim}
+//Consultar solo el campo description de la tabla inventory
+db.inventory.find({},{
+    description:1
+})
+
+//Ocultar el campo _id, que siempre se muestra por defecto
+db.inventory.find({},{
+    description:1,
+    _id: 0
+})
+\end{verbatim}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\textwidth]{imgs/FiltroDescripcion1.png}
+\end{figure}
+
+\newpage
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.4\textwidth]{imgs/FiltroDescripcion2.png}
+\end{figure}
+
+Realizar un lookup (Join SQL)\footnote{https://docs.mongodb.com/manual/reference/operator/aggregation/lookup/index.html \cite{doc}}
+
+
+\begin{verbatim}
+db.orders.aggregate([
+   {
+     $lookup:
+       {
+         from: "inventory",
+         localField: "item",
+         foreignField: "sku",
+         as: "inventory_docs"
+       }
+  }
+])
+\end{verbatim}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.7\textwidth]{imgs/ConsultaJoin.png}
+\end{figure}
+
+\newpage
+Filtrar por campos
+
+\begin{verbatim}
+//Filtra las estrategias de la campaña 201811 y con codigo 2003
+db.Estrategia.find({
+    CodigoCampania: '201811',
+    CodigoEstrategia: 2003
+},
+{
+    //Oculta la columna _id
+    _id: 0
+})
+
+//Filtra las estrategias de la campaña 201811 
+//y que contengan algún tono con cuv 30916
+db.Estrategia.find({
+    CodigoCampania: '201811',
+    "Tonos.Cuv": "30916"
+},
+{
+    _id: 0
+})
+\end{verbatim}
+
+Operadores de comparación\footnote{https://docs.mongodb.com/manual/reference/operator/query-comparison/ \cite{doc}}
+
+\begin{verbatim}
+//Lista estrategias de la campaña 201811 con precio mayor a 25
+db.Estrategia.find({
+    CodigoCampania: '201811',
+    Precio: {$gt: 25.0}
+})
+
+//Lista estrategias de la campaña 201811 con precio menor o igual a 25
+db.Estrategia.find({
+    CodigoCampania: '201811',
+    Precio: {$lte: 25.0}
+})
+
+//Lista estrategias de la campaña 201811 
+//con Codigo Estrategia 2001 ó 2003
+db.Estrategia.find({
+    CodigoCampania: '201811',
+    CodigoEstrategia: { $in: [2001,2003] }
+})
+
+//Lista estrategias de la campaña 201811 con 
+//Codigo Estrategia diferente a 2002
+db.Estrategia.find({
+    CodigoCampania: '201811',
+    CodigoEstrategia: { $ne: 2002 }
+})
+
+//Lista estrategias de la campaña 201811 con Codigo Estrategia
+// diferente a 2001 ó 2003
+db.Estrategia.find({
+    CodigoCampania: '201811',
+    CodigoEstrategia: { $nin: [2001,2003] }
+})
+\end{verbatim}
+
+Operadores lógicos\footnote{https://docs.mongodb.com/manual/reference/operator/query-logical/ \cite{doc}}
+
+\begin{verbatim}
+//Operador And
+db.Estrategia.find({
+    $and:
+    //Lista de condiciones
+    [
+        {CodigoCampania: '201811'},
+        {Activo: true}
+    ]
+})
+
+//Operador Or
+db.Estrategia.find({
+    $or:
+    //Lista de condiciones
+    [
+        {CodigoTipoEstrategia: '007'},
+        {CodigoTipoEstrategia: '008'}
+    ]
+})
+\end{verbatim}
+
+\newpage
+\hypertarget{actualizar-documentos}{%
+\subsection{Actualizar documentos}\label{actualizar-documentos}}
+Actualización de documentos en una colección\footnote{https://docs.mongodb.com/manual/tutorial/update-documents/index.html \cite{doc}}
+
+\begin{verbatim}
+//Cambia los campos Activo y TextoLibre de las estrategias  
+//de la campaña 201811 y tipo de estrategia 009
+db.Estrategia.update(
+    //Filtro de documentos a actualizar
+    {
+        CodigoCampania: '201811',
+        CodigoTipoEstrategia: '009'
+    },
+    //Campos que se van a actualizar
+    {       
+        $set:
+        {
+            Activo: true,
+            TextoLibre: 'Oferta último minuto'
+        }
+    },
+{ 
+//Indica si se actualizarán varios registros o solo el primero que encuentre
+multi: true,
+//Si es verdadero y no encuentra el registro para actualizar, lo inserta
+upsert: false
+})
+\end{verbatim}
+
+\newpage
+\hypertarget{remover-documentos}{%
+\subsection{Remover documentos}\label{remover-documentos}}
+Eliminación de documentos en una colección\footnote{https://docs.mongodb.com/manual/reference/method/db.collection.remove/index.html \cite{doc}}
+\begin{verbatim}
+//Remueve todos los documentos con estado activo falso 
+//y tipo de estrategia 030
+db.Estrategia.remove(
+    //Filtros de los documentos a remover
+    {
+        Activo: false,
+        CodigoTipoEstrategia: '030'
+    },
+    //Indica si se eliminarán varios documentos 
+    //o solo el primero que encuentre 
+    {justOne: false}
+)
+
+//Remueve todos los documentos de una colección
+db.inventory.remove({})
+db.orders.remove({})
+\end{verbatim}
+
+\newpage
+\bibliographystyle{unsrt}
+\addcontentsline{toc}{section}{Referencias}
+\bibliography{biblio}
+
+\end{document}
